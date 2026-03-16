@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ephyra-skills",
+  "description": "A collection of Claude Code skills from EphyraSoftware",
+  "owner": {
+    "name": "EphyraSoftware",
+    "url": "https://github.com/EphyraSoftware"
+  },
+  "plugins": [
+    {
+      "name": "ephyra-skills",
+      "description": "A collection of Claude Code skills from EphyraSoftware",
+      "source": ".",
+      "homepage": "https://github.com/EphyraSoftware/skills"
+    }
+  ]
+}
