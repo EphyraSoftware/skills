@@ -10,7 +10,7 @@
     {
       "name": "ephyra-skills",
       "description": "A collection of Claude Code skills from EphyraSoftware",
-      "source": ".",
+      "source": "./plugins/ephyra-skills",
       "homepage": "https://github.com/EphyraSoftware/skills"
     }
   ]
