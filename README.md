@@ -36,7 +36,7 @@ Restart any running Claude Code sessions after installing or updating.
 
 ## Skills
 
-### [plan-execute](skills/plan-execute/README.md)
+### [plan-execute](plugins/ephyra-skills/skills/plan-execute/README.md)
 
 Structured, iterative execution of a coding plan from a `PLAN.md` file. Works through tasks one at a time with a check chain covering build/tests, coverage, design review, and codebase consistency. Includes stall detection that asks for help if the same check fails repeatedly.
 

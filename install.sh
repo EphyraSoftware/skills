@@ -62,14 +62,14 @@ fi
 # When run via `bash <(curl ...)`, BASH_SOURCE[0] is /dev/fd/N — not a real path.
 # In that case, clone the repo to a temp directory instead.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILLS_DIR="$SCRIPT_DIR/skills"
+SKILLS_DIR="$SCRIPT_DIR/plugins/ephyra-skills/skills"
 
 if [[ ! -d "$SKILLS_DIR" ]]; then
   info "Script run via pipe — cloning repository to a temporary directory..."
   TEMP_DIR="$(mktemp -d)"
   trap 'rm -rf "$TEMP_DIR"' EXIT
   git clone --depth 1 "$REPO_URL" "$TEMP_DIR" --quiet
-  SKILLS_DIR="$TEMP_DIR/skills"
+  SKILLS_DIR="$TEMP_DIR/plugins/ephyra-skills/skills"
 fi
 
 if [[ ! -d "$SKILLS_DIR" ]]; then
