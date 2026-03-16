@@ -12,7 +12,9 @@ set -euo pipefail
 PLUGIN_NAME="ephyra-skills"
 MARKETPLACE_NAME="ephyra-skills"
 REPO="EphyraSoftware/skills"
+REPO_URL="https://github.com/${REPO}.git"
 DRY_RUN=false
+TEMP_DIR=""
 
 # ── Argument parsing ───────────────────────────────────────────────────────────
 for arg in "$@"; do
@@ -51,10 +53,24 @@ if ! command -v claude &>/dev/null; then
   exit 1
 fi
 
-# ── Conflict detection ─────────────────────────────────────────────────────────
-# Skills directory in this repo, relative to the script's own location
+if ! command -v git &>/dev/null; then
+  err "git not found. Please install git and try again."
+  exit 1
+fi
+
+# ── Locate skills directory ────────────────────────────────────────────────────
+# When run via `bash <(curl ...)`, BASH_SOURCE[0] is /dev/fd/N — not a real path.
+# In that case, clone the repo to a temp directory instead.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLS_DIR="$SCRIPT_DIR/skills"
+
+if [[ ! -d "$SKILLS_DIR" ]]; then
+  info "Script run via pipe — cloning repository to a temporary directory..."
+  TEMP_DIR="$(mktemp -d)"
+  trap 'rm -rf "$TEMP_DIR"' EXIT
+  git clone --depth 1 "$REPO_URL" "$TEMP_DIR" --quiet
+  SKILLS_DIR="$TEMP_DIR/skills"
+fi
 
 if [[ ! -d "$SKILLS_DIR" ]]; then
   err "skills/ directory not found at $SKILLS_DIR"
