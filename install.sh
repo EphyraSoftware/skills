@@ -140,7 +140,10 @@ fi
 
 # ── Install / update ───────────────────────────────────────────────────────────
 if $PLUGIN_INSTALLED; then
-  info "Plugin '$PLUGIN_QUALIFIED' is already installed — updating..."
+  info "Plugin '$PLUGIN_QUALIFIED' is already installed — refreshing marketplace and updating..."
+  # Always refresh the marketplace first so the local clone reflects the latest
+  # version before the update check compares version numbers.
+  run claude plugin marketplace update "$MARKETPLACE_NAME"
   run claude plugin update "$PLUGIN_QUALIFIED"
   ok "Plugin updated."
 else
