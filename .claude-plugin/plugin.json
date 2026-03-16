@@ -1,0 +1,12 @@
+{
+  "name": "ephyra-skills",
+  "version": "0.1.0",
+  "description": "A collection of Claude Code skills from EphyraSoftware.",
+  "author": {
+    "name": "EphyraSoftware",
+    "url": "https://github.com/EphyraSoftware"
+  },
+  "homepage": "https://github.com/EphyraSoftware/skills",
+  "repository": "https://github.com/EphyraSoftware/skills",
+  "skills": "./skills"
+}
