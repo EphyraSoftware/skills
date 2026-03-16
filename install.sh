@@ -11,6 +11,7 @@ set -euo pipefail
 
 PLUGIN_NAME="ephyra-skills"
 MARKETPLACE_NAME="ephyra-skills"
+PLUGIN_QUALIFIED="${PLUGIN_NAME}@${MARKETPLACE_NAME}"
 REPO="EphyraSoftware/skills"
 REPO_URL="https://github.com/${REPO}.git"
 DRY_RUN=false
@@ -133,14 +134,14 @@ fi
 
 # ── Check if plugin is already installed ──────────────────────────────────────
 PLUGIN_INSTALLED=false
-if claude plugin list 2>/dev/null | grep -q "$PLUGIN_NAME"; then
+if claude plugin list 2>/dev/null | grep -q "$PLUGIN_QUALIFIED"; then
   PLUGIN_INSTALLED=true
 fi
 
 # ── Install / update ───────────────────────────────────────────────────────────
 if $PLUGIN_INSTALLED; then
-  info "Plugin '$PLUGIN_NAME' is already installed — updating..."
-  run claude plugin update "$PLUGIN_NAME"
+  info "Plugin '$PLUGIN_QUALIFIED' is already installed — updating..."
+  run claude plugin update "$PLUGIN_QUALIFIED"
   ok "Plugin updated."
 else
   # Register marketplace if not already present
