@@ -76,3 +76,9 @@ Restart any running Claude Code or OpenClaw sessions after installing or updatin
 Structured, iterative execution of a coding plan from a `PLAN.md` file. Works through tasks one at a time with a check chain covering build/tests, coverage, design review, consistency, and integration checks. Includes stall detection that asks for help if the same check fails repeatedly.
 
 Activates automatically when a `PLAN.md` is present in the working directory.
+
+### [rust-standards](plugins/ephyra-skills/skills/rust-standards/README.md)
+
+Coding standards for Rust projects. Covers `anyhow` scope (binary-only), custom error type conventions, `Result` type aliases, test naming (no `test_` prefix), and async test timing (check-delay-retry instead of sleeps).
+
+Activates automatically when working on Rust code.
