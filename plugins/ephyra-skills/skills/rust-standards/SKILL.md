@@ -1,6 +1,6 @@
 ---
 name: rust-standards
-description: "Coding standards for Rust projects. Apply when writing or reviewing Rust code. Covers error handling (anyhow scope, thiserror conventions, Result type aliases), test naming, and async test patterns. Triggers on any Rust coding task in a project using these conventions."
+description: "Coding standards for Rust projects. Apply when writing or reviewing Rust code. Covers error handling (`anyhow` scope, `thiserror` conventions, `Result` type aliases), test naming, and async test patterns. Triggers on any Rust coding task."
 ---
 
 # Rust Coding Standards
@@ -11,7 +11,7 @@ Project-specific standards for Rust code. Apply these when writing new code or r
 
 ### `anyhow` scope
 
-`anyhow` is permitted only in code that compiles directly into a binary (i.e. `main.rs` and modules reachable only from binary entry points). It must not be used in library code.
+The `anyhow` crate is permitted only in code that compiles directly into a binary (i.e. `main.rs` and modules reachable only from binary entry points). It must not be used in library code.
 
 **Why:** `anyhow::Error` is opaque and erases the original error type. Library consumers cannot match on it or handle specific variants — they are effectively forced to adopt `anyhow` themselves, which constrains downstream integrations.
 
@@ -105,7 +105,10 @@ where
 }
 
 // Usage in a test
-assert!(wait_for(|| async { server.is_ready().await }, Duration::from_secs(5)).await);
+assert!(
+    wait_for(|| async { server.is_ready().await }, Duration::from_secs(5)).await,
+    "timed out waiting for server to become ready"
+);
 ```
 
 This pattern keeps tests fast in the common case (condition met quickly) and reliable under load (retries up to the timeout rather than failing on a single missed window).
