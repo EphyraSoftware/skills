@@ -77,6 +77,12 @@ Structured, iterative execution of a coding plan from a `PLAN.md` file. Works th
 
 Activates automatically when a `PLAN.md` is present in the working directory.
 
+### [review-flow](plugins/ephyra-skills/skills/review-flow/README.md)
+
+Pull request lifecycle management in three phases: create a PR with conventional commits, address reviewer feedback with fixup commits and per-comment replies, and prepare for merge by autosquashing and rebasing.
+
+Activates automatically when asked to create a PR, address review feedback, or prepare for merge.
+
 ### [rust-standards](plugins/ephyra-skills/skills/rust-standards/README.md)
 
 Coding standards for Rust projects. Covers `anyhow` scope (binary-only), custom error type conventions, `Result` type aliases, test naming (no `test_` prefix), and async test timing (check-delay-retry instead of sleeps).
