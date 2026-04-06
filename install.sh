@@ -79,7 +79,10 @@ if [[ ! -d "$SKILLS_DIR" ]]; then
 fi
 
 # Find all skill names this plugin provides
-mapfile -t OUR_SKILLS < <(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
+OUR_SKILLS=()
+while IFS= read -r d; do
+  OUR_SKILLS+=("$(basename "$d")")
+done < <(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d)
 
 info "Skills provided by this plugin:"
 for skill in "${OUR_SKILLS[@]}"; do
